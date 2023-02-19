@@ -1,0 +1,15 @@
+
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/tp_python_api.iml
+.idea/vcs.xml
+.idea/workspace.xml
+tp_unity_ai/TPUnityAI.egg-info/dependency_links.txt
+tp_unity_ai/TPUnityAI.egg-info/PKG-INFO
+tp_unity_ai/TPUnityAI.egg-info/requires.txt
+tp_unity_ai/TPUnityAI.egg-info/SOURCES.txt
+tp_unity_ai/TPUnityAI.egg-info/top_level.txt
+*.gz
+*.pyc
