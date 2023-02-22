@@ -1,1 +1,1 @@
-from . import debug as debug
+from . import debug
