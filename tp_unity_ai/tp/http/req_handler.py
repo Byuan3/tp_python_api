@@ -23,11 +23,6 @@ class RequestHandler(BaseHTTPRequestHandler):
                 if img is not None:
                     img_file = io.BytesIO(img[0])
                     RequestHandler.image_data = img_file.getvalue()
-                    nparr = np.frombuffer(img_file.getvalue(), np.uint8)
-                    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-                    # Process the image and msg as needed
-                    cv2.imshow("Received Image", img)
-                    cv2.waitKey(1)
                     if msg is not None:
                         print(msg[0])
                     # Set response
