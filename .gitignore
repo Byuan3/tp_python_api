@@ -13,3 +13,4 @@ tp_unity_ai/TPUnityAI.egg-info/SOURCES.txt
 tp_unity_ai/TPUnityAI.egg-info/top_level.txt
 *.gz
 *.pyc
+.idea/other.xml
