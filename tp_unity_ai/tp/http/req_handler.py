@@ -66,6 +66,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
             self.wfile.write(b'Received PUT request with JSON body')
+            return
         # Bad Request
         self.send_response(400)
         self.end_headers()
@@ -75,7 +76,6 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-type', 'image/jpeg')
             self.end_headers()
-            print(RequestHandler.image_data)
             self.wfile.write(RequestHandler.image_data)
             return
         # Bad Request
