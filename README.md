@@ -41,6 +41,8 @@ tp_unity_ai
 * Manish Mapakshi - manish.mapakshi@sjsu.edu
 * Sai Sravani Chalasani - saisravani.chalasani@sjsu.edu
 * Shereen Punnassery - shereen.punnassery@sjsu.edu
+* Adam Goldstein - adam.c.goldstein@sjsu.edu
+* Ryan Cummings - ryan.cummings@sjsu.edu
 
 ### Responsibility & Contributions
 
