@@ -34,6 +34,7 @@ tp_unity_ai
 ### Industrial Advisor
 
 * Srba Jovic - srba.jovic@icloud.com
+* Yusuke Yakuwa - yusuke.yakuwa@ctione.com
 
 ### Team Members
 
@@ -41,6 +42,7 @@ tp_unity_ai
 * Manish Mapakshi - manish.mapakshi@sjsu.edu
 * Sai Sravani Chalasani - saisravani.chalasani@sjsu.edu
 * Shereen Punnassery - shereen.punnassery@sjsu.edu
+* Waqas Kureshy - waqas.kureshy@sjsu.edu
 * Adam Goldstein - adam.c.goldstein@sjsu.edu
 * Ryan Cummings - ryan.cummings@sjsu.edu
 
