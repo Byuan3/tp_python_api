@@ -28,16 +28,16 @@ tp_unity_ai
 ## Team Info
 Name | Photo | Role | Email
 ---- | ----- | ---- | ----
-Harry Li | <img src="https://user-images.githubusercontent.com/38079632/227462713-9f9a5f60-e869-4c92-a653-98c1e6af724f.jpg" width="150" height="150"> | Project Supervisor & Architect | hua.li@sjsu.edu
+Harry Li | <img src="https://user-images.githubusercontent.com/38079632/227462713-9f9a5f60-e869-4c92-a653-98c1e6af724f.jpg" width="100" height="100"> | Project Supervisor & Architect | hua.li@sjsu.edu
 Srba Jovic |  | Industrial Advisor | srba.jovic@icloud.com
-Yusuke Yakuwa | <img src="https://user-images.githubusercontent.com/38079632/227462162-c2182a3b-e310-4b65-8d48-9ce06d7f87dd.jpg" width="150" height="150"> | Industrial Advisor | yusuke.yakuwa@ctione.com
-Boteng Yuan | <img src="https://user-images.githubusercontent.com/38079632/227463191-6eeacf08-95cd-4ea6-b006-80922506c517.jpg" width="150" height="150"> | Team Member | boteng.yuan@sjsu.edu
+Yusuke Yakuwa | <img src="https://user-images.githubusercontent.com/38079632/227462162-c2182a3b-e310-4b65-8d48-9ce06d7f87dd.jpg" width="100" height="100"> | Industrial Advisor | yusuke.yakuwa@ctione.com
+Boteng Yuan | <img src="https://user-images.githubusercontent.com/38079632/227463191-6eeacf08-95cd-4ea6-b006-80922506c517.jpg" width="100" height="100"> | Team Member | boteng.yuan@sjsu.edu
 Manish Mapakshi |  | Team Member | manish.mapakshi@sjsu.edu
 Sai Sravani Chalasani |  | Team Member | saisravani.chalasani@sjsu.edu
 Shereen Punnassery |  | Team Member | shereen.punnassery@sjsu.edu
 Waqas Kureshy |  | Team Member | waqas.kureshy@sjsu.edu
-Adam Goldstein | <img src="https://user-images.githubusercontent.com/38079632/227458908-30a28225-ed81-43a5-9157-4001ff546b77.jpeg" width="150" height="150"> | Team Member | adam.c.goldstein@sjsu.edu
-Ryan Cummings | <img src="https://user-images.githubusercontent.com/38079632/227463008-1bd742c0-cebb-4d77-825f-c12cc660c456.jpg" width="150" height="150"> | Team Member | ryan.cummings@sjsu.edu
+Adam Goldstein | <img src="https://user-images.githubusercontent.com/38079632/227458908-30a28225-ed81-43a5-9157-4001ff546b77.jpeg" width="100" height="100"> | Team Member | adam.c.goldstein@sjsu.edu
+Ryan Cummings | <img src="https://user-images.githubusercontent.com/38079632/227463008-1bd742c0-cebb-4d77-825f-c12cc660c456.jpg" width="100" height="100"> | Team Member | ryan.cummings@sjsu.edu
 
 ### Responsibility & Contributions
 
