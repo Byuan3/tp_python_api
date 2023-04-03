@@ -1,6 +1,5 @@
 import io
 import json
-import re
 
 from http.server import BaseHTTPRequestHandler
 import cgi
@@ -61,8 +60,9 @@ class RequestHandler(BaseHTTPRequestHandler):
 
                 if 'id' in data:
                     object_id = data['id']
+                    object_name = data['name']
                     # Process the request data
-                    RequestHandler.agents[object_id] = data
+                    RequestHandler.agents[object_name] = data
 
                     # Set response
                     if object_id in RequestHandler.agents_pipeline and len(
