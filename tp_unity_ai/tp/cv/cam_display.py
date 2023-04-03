@@ -23,6 +23,3 @@ def cam_display(cameraID=0):
         else:
             print("Bad request")
 
-
-if __name__ == '__main__':
-    cam_display()

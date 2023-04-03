@@ -1,5 +1,5 @@
 import requests
-from agent import Agent
+from .agent import Agent
 
 API_url = "http://localhost:7000"
 
@@ -36,11 +36,3 @@ def get_agent_with_id(agent_id):
 
     print(f"Failed to retrieve agent with id: {agent_id}")
     return None
-
-
-if __name__ == '__main__':
-    agent = get_agent_with_name('Ball')
-    print(agent.name)
-    print(agent.id)
-    agent.move()
-    agent.set_speed(100)

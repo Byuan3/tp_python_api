@@ -1,4 +1,4 @@
-import cv2
+from .cam_display import *
 
 
 def downscale(image, factor):

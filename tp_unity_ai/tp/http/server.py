@@ -1,5 +1,5 @@
 from http.server import HTTPServer
-from req_handler import RequestHandler
+from .req_handler import RequestHandler
 
 
 class HTTPCommnServer:
@@ -13,8 +13,3 @@ class HTTPCommnServer:
         httpd = server_class(server_address, handler_class)
         print('Server running at http://localhost:7000/')
         httpd.serve_forever()
-
-
-if __name__ == '__main__':
-    http_commn = HTTPCommnServer()
-    http_commn.run()
