@@ -48,8 +48,9 @@ class RequestHandler(BaseHTTPRequestHandler):
                         self.wfile.write(b'Success Stream Post Request')
                     return
         # Object connection API
-        elif self.path == '/objects':
+        if self.path == '/objects':
             ctype, pdict = cgi.parse_header(self.headers.get('Content-Type'))
+            print(ctype)
             if ctype == 'application/json':
                 # Get the content length from the request headers
                 content_length = int(self.headers['Content-Length'])
@@ -59,6 +60,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 data = json.loads(body)
 
                 if 'id' in data:
+                    print(data)
                     object_id = data['id']
                     object_name = data['name']
                     # Process the request data
@@ -67,6 +69,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                     # Set response
                     if object_id in RequestHandler.agents_pipeline and len(
                             RequestHandler.agents_pipeline[object_id]) != 0:
+                        
                         # Create a JSON response
                         response_data = RequestHandler.agents_pipeline[object_id][0]
                         response_data['msg'] = 'Success Object {0} Post Request'.format(object_id)
