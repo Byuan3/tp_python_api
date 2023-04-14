@@ -123,59 +123,6 @@ public class PlayerMovement : MonoBehaviour
             transform.Rotate(0, 90, 0);
         }
     }
-
-    // IEnumerator StreamObject()
-    // {
-
-    //     // var request = new UnityWebRequest("http://localhost:7000/objects", "POST");
-    //     // string bodyJsonString = @"{
-    //     //         'id':'cylinder', 
-    //     //     }";
-    //     // byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(bodyJsonString);
-    //     // request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
-    //     // request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-    //     // request.SetRequestHeader("Content-Type", "application/json");
-    //     // yield return request.SendWebRequest();
-    //     // Debug.Log("Status Code: " + request.responseCode);
-
-    //     while (isStreaming)
-    //     {
-
-    //         string bodyJsonString = @"{
-    //             'id':'cylinder', 
-    //         }";
-    //         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(bodyJsonString);
-    //         yield return new WaitForEndOfFrame();
-    //         ;
-
-    //         WWWForm form = new WWWForm();
-    //         float horizontalInput = Input.GetAxis("Horizontal");
-    //         float verticalInput = Input.GetAxis("Vertical");
-    //         form.AddField("Content-Type", contentType);
-    //         form.AddField("Content-Length", bodyJsonString.Length.ToString());
-    //         // byte[] postData = System.Text.Encoding.UTF8.GetBytes(json);
-    //         form.AddBinaryData("json", bodyRaw);
-    //         UnityWebRequest www = UnityWebRequest.Post("http://localhost:7000/objects", form);
-    //         www.SetRequestHeader("Content-Type", "application/json");
-    //         using (www)
-    //         {
-
-    //             yield return www.SendWebRequest();
-
-    //             if (www.result != UnityWebRequest.Result.Success)
-    //             {
-    //                 Debug.Log(www.error);
-    //             }
-    //             else
-    //             {
-    //                 Debug.Log("Server Response: " + www.downloadHandler.text);
-    //             }
-
-    //             yield return null;
-    //         }
-    //     }
-    // }
-
     void OnDisable()
     {
         isStreaming = false;
