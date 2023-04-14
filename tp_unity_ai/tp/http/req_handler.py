@@ -7,9 +7,9 @@ from http.server import BaseHTTPRequestHandler
 
 
 class RequestHandler(BaseHTTPRequestHandler):
-    image_data: Optional[bytes] = None
-    pipeline: List[Dict[str, str]] = []
-    agents_pipeline: Dict[str, List[Dict[str, str]]] = {}
+    cam_image: Optional[bytes] = None
+    stream_pipeline: List[Dict[str, str]] = []
+    commands_pipeline: Dict[str, List[Dict[str, str]]] = {}
     agents: Dict[str, Dict[str, str]] = {}
 
     def do_POST(self):
@@ -23,13 +23,13 @@ class RequestHandler(BaseHTTPRequestHandler):
                 msg = fields.get('msg')
                 if img is not None:
                     img_file = io.BytesIO(img[0])
-                    RequestHandler.image_data = img_file.getvalue()
+                    RequestHandler.cam_image = img_file.getvalue()
                     if msg is not None:
                         print(msg[0])
                     # Set response
-                    if len(RequestHandler.pipeline) != 0:
+                    if len(RequestHandler.stream_pipeline) != 0:
                         # Create a JSON response
-                        response_data = RequestHandler.pipeline[0]
+                        response_data = RequestHandler.stream_pipeline[0]
 
                         # Encode the response data as JSON
                         response_body = json.dumps(response_data).encode('utf-8')
@@ -41,7 +41,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
                         # Send the JSON response
                         self.wfile.write(response_body)
-                        RequestHandler.pipeline.pop(0)
+                        RequestHandler.stream_pipeline.pop(0)
                     else:
                         self.send_response(200)
                         self.send_header('Content-type', 'text/plain')
@@ -69,10 +69,10 @@ class RequestHandler(BaseHTTPRequestHandler):
                         RequestHandler.agents[object_name] = data
 
                         # Set response
-                        if object_id in RequestHandler.agents_pipeline and RequestHandler.agents_pipeline[object_id]:
+                        if object_id in RequestHandler.commands_pipeline and RequestHandler.commands_pipeline[object_id]:
 
                             # Create a JSON response
-                            response_data = RequestHandler.agents_pipeline[object_id][0]
+                            response_data = RequestHandler.commands_pipeline[object_id][0]
                             response_data['msg'] = 'Success Object {0} Post Request'.format(object_id)
 
                             # Encode the response data as JSON
@@ -85,9 +85,9 @@ class RequestHandler(BaseHTTPRequestHandler):
 
                             # Send the JSON response
                             self.wfile.write(response_body)
-                            RequestHandler.agents_pipeline[object_id].pop(0)
+                            RequestHandler.commands_pipeline[object_id].pop(0)
                         else:
-                            RequestHandler.agents_pipeline[object_id] = []
+                            RequestHandler.commands_pipeline[object_id] = []
 
                             # Set the Content-Type header to application/json
                             self.send_response(200)
@@ -117,8 +117,8 @@ class RequestHandler(BaseHTTPRequestHandler):
                     if 'id' in data:
                         # Process the JSON data as desired
                         object_id = data['id']
-                        if object_id in RequestHandler.agents_pipeline:
-                            RequestHandler.agents_pipeline[object_id].append(data)
+                        if object_id in RequestHandler.commands_pipeline:
+                            RequestHandler.commands_pipeline[object_id].append(data)
                             # Send a response
                             self.send_response(200)
                             self.send_header('Content-type', 'text/plain')
@@ -136,11 +136,11 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         # Camera image GET API
         if self.path == '/display':
-            if RequestHandler.image_data:
+            if RequestHandler.cam_image:
                 self.send_response(200)
                 self.send_header('Content-type', 'image/jpeg')
                 self.end_headers()
-                self.wfile.write(RequestHandler.image_data)
+                self.wfile.write(RequestHandler.cam_image)
             return
         # Agents GET API
         elif self.path == '/agents':
