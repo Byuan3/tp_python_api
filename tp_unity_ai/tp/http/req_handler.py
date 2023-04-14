@@ -1,15 +1,16 @@
 import io
 import json
-
-from http.server import BaseHTTPRequestHandler
 import cgi
+
+from typing import Dict, List, Optional
+from http.server import BaseHTTPRequestHandler
 
 
 class RequestHandler(BaseHTTPRequestHandler):
-    image_data = None
-    pipeline = []
-    agents_pipeline = {}
-    agents = {}
+    image_data: Optional[bytes] = None
+    pipeline: List[Dict[str, str]] = []
+    agents_pipeline: Dict[str, List[Dict[str, str]]] = {}
+    agents: Dict[str, Dict[str, str]] = {}
 
     def do_POST(self):
         # Camera stream API
@@ -57,46 +58,50 @@ class RequestHandler(BaseHTTPRequestHandler):
 
                 # Read the request body and parse it as JSON
                 body = self.rfile.read(content_length)
-                data = json.loads(body)
+                try:
+                    data = json.loads(body)
 
-                if 'id' in data:
-                    print(data)
-                    object_id = data['id']
-                    object_name = data['name']
-                    # Process the request data
-                    RequestHandler.agents[object_name] = data
+                    if 'id' in data:
+                        print(data)
+                        object_id = data['id']
+                        object_name = data['name']
+                        # Process the request data
+                        RequestHandler.agents[object_name] = data
 
-                    # Set response
-                    if object_id in RequestHandler.agents_pipeline and len(
-                            RequestHandler.agents_pipeline[object_id]) != 0:
-                        
-                        # Create a JSON response
-                        response_data = RequestHandler.agents_pipeline[object_id][0]
-                        response_data['msg'] = 'Success Object {0} Post Request'.format(object_id)
+                        # Set response
+                        if object_id in RequestHandler.agents_pipeline and RequestHandler.agents_pipeline[object_id]:
 
-                        # Encode the response data as JSON
-                        response_body = json.dumps(response_data).encode('utf-8')
+                            # Create a JSON response
+                            response_data = RequestHandler.agents_pipeline[object_id][0]
+                            response_data['msg'] = 'Success Object {0} Post Request'.format(object_id)
 
-                        # Set the Content-Type header to application/json
-                        self.send_response(200)
-                        self.send_header('Content-Type', 'application/json')
-                        self.end_headers()
+                            # Encode the response data as JSON
+                            response_body = json.dumps(response_data).encode('utf-8')
 
-                        # Send the JSON response
-                        self.wfile.write(response_body)
-                        RequestHandler.agents_pipeline[object_id].pop(0)
-                    else:
-                        RequestHandler.agents_pipeline[object_id] = []
+                            # Set the Content-Type header to application/json
+                            self.send_response(200)
+                            self.send_header('Content-Type', 'application/json')
+                            self.end_headers()
 
-                        # Set the Content-Type header to application/json
-                        self.send_response(200)
-                        self.send_header('Content-Type', 'application/json')
-                        self.end_headers()
+                            # Send the JSON response
+                            self.wfile.write(response_body)
+                            RequestHandler.agents_pipeline[object_id].pop(0)
+                        else:
+                            RequestHandler.agents_pipeline[object_id] = []
 
-                        # Send the JSON response
-                        res = {'msg': 'Success Object {0} Post Request'.format(object_id)}
-                        self.wfile.write(json.dumps(res).encode('utf-8'))
-                    return
+                            # Set the Content-Type header to application/json
+                            self.send_response(200)
+                            self.send_header('Content-Type', 'application/json')
+                            self.end_headers()
+
+                            # Send the JSON response
+                            res = {'msg': 'Success Object {0} Post Request'.format(object_id)}
+                            self.wfile.write(json.dumps(res).encode('utf-8'))
+                        return
+
+                except json.JSONDecodeError:
+                    return {'status': 'error', 'message': 'Invalid JSON format in request body'}
+
         # Commands update API
         elif self.path == '/commands':
             ctype, pdict = cgi.parse_header(self.headers.get('Content-Type'))
@@ -106,20 +111,24 @@ class RequestHandler(BaseHTTPRequestHandler):
 
                 # Read the request body and parse it as JSON
                 body = self.rfile.read(content_length)
-                data = json.loads(body)
+                try:
+                    data = json.loads(body)
 
-                if 'id' in data:
-                    # Process the JSON data as desired
-                    object_id = data['id']
-                    if object_id in RequestHandler.agents_pipeline:
-                        RequestHandler.agents_pipeline[object_id].append(data)
-                        # Send a response
-                        self.send_response(200)
-                        self.send_header('Content-type', 'text/plain')
-                        self.end_headers()
-                        self.wfile.write(b'Received PUT request with JSON\n')
-                        self.wfile.write(bytes('Object id: {0}'.format(object_id), encoding='utf-8'))
-                        return
+                    if 'id' in data:
+                        # Process the JSON data as desired
+                        object_id = data['id']
+                        if object_id in RequestHandler.agents_pipeline:
+                            RequestHandler.agents_pipeline[object_id].append(data)
+                            # Send a response
+                            self.send_response(200)
+                            self.send_header('Content-type', 'text/plain')
+                            self.end_headers()
+                            self.wfile.write(b'Received PUT request with JSON\n')
+                            self.wfile.write(bytes('Object id: {0}'.format(object_id), encoding='utf-8'))
+                            return
+
+                except json.JSONDecodeError:
+                    return {'status': 'error', 'message': 'Invalid JSON format in request body'}
         # Bad Request
         self.send_response(400)
         self.end_headers()
