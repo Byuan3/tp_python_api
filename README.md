@@ -3,7 +3,7 @@ AI and Augmented Reality Simulation Tool Kit for Autonomous Systems
 ## Intro
 
 ### Architecture
-![architecture](https://user-images.githubusercontent.com/38079632/206777161-83f55d80-b80a-45e9-82c1-a31532493adf.png)
+![Architecture](https://user-images.githubusercontent.com/38079632/231948918-e80a1cd7-6b03-4ddb-b065-c2cd5446f964.jpg)
 
 <pre>
 tp_unity_ai
