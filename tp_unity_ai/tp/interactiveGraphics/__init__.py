@@ -1,5 +1,5 @@
 import requests
-from .agent import Agent
+from tp_unity_ai.tp.interactiveGraphics.agent import Agent
 
 API_url = "http://localhost:7000"
 

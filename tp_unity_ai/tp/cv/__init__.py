@@ -1,4 +1,5 @@
-from .cam_display import *
+from tp_unity_ai.tp.cv.cam_display import cam_display
+import cv2
 
 
 def downscale(image, factor):

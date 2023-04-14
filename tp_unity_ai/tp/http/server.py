@@ -1,5 +1,5 @@
 from http.server import HTTPServer
-from .req_handler import RequestHandler
+from tp_unity_ai.tp.http.req_handler import RequestHandler
 
 
 class HTTPCommnServer:

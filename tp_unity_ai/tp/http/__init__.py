@@ -1,4 +1,4 @@
-from .server import HTTPCommnServer
+from tp_unity_ai.tp.http.server import HTTPCommnServer
 
 server = HTTPCommnServer()
 default_host = ""
