@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
     Rigidbody rb;
-    [SerializeField] float movementSpeed = 6f;
+    [SerializeField] float movementSpeed = 2f;
     [SerializeField] float jumpForce = 5f;
 
     [SerializeField] float horizontalInput = 0f;
@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isStreaming = false;
 
     private string contentType = "application/json";
+    private bool isMoving = false;
 
     void Start()
     {
@@ -47,8 +48,7 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(StreamObject());
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-
-
+        rb.velocity = new Vector3((horizontalInput + .1f) * movementSpeed, rb.velocity.y, (verticalInput) * movementSpeed);
     }
 
     // Update is called once per frame
@@ -75,7 +75,11 @@ public class PlayerMovement : MonoBehaviour
             OnResume();
         }
 
-
+        if (isMoving)
+        {
+            transform.position += transform.forward * movementSpeed * Time.deltaTime;
+        }
+        
     }
 
     IEnumerator StreamObject()
@@ -98,15 +102,25 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("responseObj.command: " + responseObj.command);
         if (responseObj.command == "move")
         {
-            rb.velocity = new Vector3((horizontalInput + .1f) * movementSpeed, rb.velocity.y, (verticalInput) * movementSpeed);
-
-        }
-        if (responseObj.command == "set_speed")
+            isMoving = true;
+        } 
+        else if (responseObj.command == "stop")
         {
-            var speed = (float)responseObj.speed / 1000;
-            Debug.Log("Speed: " + speed);
-            rb.velocity = new Vector3((horizontalInput + speed) * movementSpeed, rb.velocity.y, (verticalInput) * movementSpeed);
-
+            isMoving = false;
+        } 
+        else if (responseObj.command == "set_speed")
+        {
+            movementSpeed = responseObj.speed;
+            Debug.Log("Speed: " + movementSpeed);
+            
+        }
+        else if (responseObj.command == "turn_left")
+        {
+            transform.Rotate(0, -90, 0);
+        }
+        else if (responseObj.command == "turn_right")
+        {
+            transform.Rotate(0, 90, 0);
         }
     }
 
