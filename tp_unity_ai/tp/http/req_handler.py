@@ -8,7 +8,6 @@ from http.server import BaseHTTPRequestHandler
 
 class RequestHandler(BaseHTTPRequestHandler):
     cam_image: Optional[bytes] = None
-    stream_pipeline: List[Dict[str, str]] = []
     commands_pipeline: Dict[str, List[Dict[str, str]]] = {}
     agents: Dict[str, Dict[str, str]] = {}
 
@@ -27,29 +26,13 @@ class RequestHandler(BaseHTTPRequestHandler):
                     if msg is not None:
                         print(msg[0])
                     # Set response
-                    if len(RequestHandler.stream_pipeline) != 0:
-                        # Create a JSON response
-                        response_data = RequestHandler.stream_pipeline[0]
-
-                        # Encode the response data as JSON
-                        response_body = json.dumps(response_data).encode('utf-8')
-
-                        # Set the Content-Type header to application/json
-                        self.send_response(200)
-                        self.send_header('Content-Type', 'application/json')
-                        self.end_headers()
-
-                        # Send the JSON response
-                        self.wfile.write(response_body)
-                        RequestHandler.stream_pipeline.pop(0)
-                    else:
-                        self.send_response(200)
-                        self.send_header('Content-type', 'text/plain')
-                        self.end_headers()
-                        self.wfile.write(b'Success Stream Post Request')
+                    self.send_response(200)
+                    self.send_header('Content-type', 'text/plain')
+                    self.end_headers()
+                    self.wfile.write(b'Success Stream Post Request')
                     return
-        # Object connection API
-        if self.path == '/objects':
+        # Objects API
+        elif self.path == '/objects':
             ctype, pdict = cgi.parse_header(self.headers.get('Content-Type'))
             print(ctype)
             if ctype == 'application/json':
@@ -134,7 +117,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        # Camera image GET API
+        # Camera GET API
         if self.path == '/display':
             if RequestHandler.cam_image:
                 self.send_response(200)
