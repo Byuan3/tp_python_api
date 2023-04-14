@@ -5,17 +5,20 @@ AI and Augmented Reality Simulation Tool Kit for Autonomous Systems
 ### Architecture
 ![Architecture](https://user-images.githubusercontent.com/38079632/231948918-e80a1cd7-6b03-4ddb-b065-c2cd5446f964.jpg)
 
+### Workflow
+![Workflow](https://user-images.githubusercontent.com/38079632/232119995-32aaab19-c154-436a-9ea7-9400b8e4fbb2.jpg)
+
 <pre>
 tp_unity_ai
-├── calculation
-│   └── calculation.py
-├── communication
-│   ├── commn_client.py
-│   ├── commn_server.py
-│   └── communicator.py
-├── config
+├── compute
+├── debug
+├── http
+│   ├── req_handler.py
+│   └── server.py
 ├── cv
+    └── cam_display.py
 └── interactiveGraphics
+    └── agents.py
 </pre>
 
 ### Key Features
