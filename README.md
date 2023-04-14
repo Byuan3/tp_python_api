@@ -3,19 +3,22 @@ AI and Augmented Reality Simulation Tool Kit for Autonomous Systems
 ## Intro
 
 ### Architecture
-![architecture](https://user-images.githubusercontent.com/38079632/206777161-83f55d80-b80a-45e9-82c1-a31532493adf.png)
+![Architecture](https://user-images.githubusercontent.com/38079632/231948918-e80a1cd7-6b03-4ddb-b065-c2cd5446f964.jpg)
+
+### Workflow
+![Workflow](https://user-images.githubusercontent.com/38079632/232121014-856604cb-3d09-4ad4-b58c-557821f4e53d.jpg)
 
 <pre>
-tp_unity_ai
-├── calculation
-│   └── calculation.py
-├── communication
-│   ├── commn_client.py
-│   ├── commn_server.py
-│   └── communicator.py
-├── config
+
+├── compute
+├── debug
+├── http
+│   ├── req_handler.py
+│   └── server.py
 ├── cv
+    └── cam_display.py
 └── interactiveGraphics
+    └── agents.py
 </pre>
 
 ### Key Features
@@ -32,7 +35,7 @@ Harry Li | <img src="https://user-images.githubusercontent.com/38079632/22746271
 Srba Jovic |  | Industrial Advisor | srba.jovic@icloud.com
 Yusuke Yakuwa | <img src="https://user-images.githubusercontent.com/38079632/227462162-c2182a3b-e310-4b65-8d48-9ce06d7f87dd.jpg" width="100" height="100"> | Industrial Advisor | yusuke.yakuwa@ctione.com
 Boteng Yuan | <img src="https://user-images.githubusercontent.com/38079632/227463191-6eeacf08-95cd-4ea6-b006-80922506c517.jpg" width="100" height="100"> | Team Member | boteng.yuan@sjsu.edu
-Manish Mapakshi |  | Team Member | manish.mapakshi@sjsu.edu
+Manish Mapakshi | <img src="https://user-images.githubusercontent.com/38079632/232161130-4b2d661b-1147-4484-b18d-b0c33dc195d3.jpg" width="100" height="100"> | Team Member | manish.mapakshi@sjsu.edu
 Sai Sravani Chalasani |  | Team Member | saisravani.chalasani@sjsu.edu
 Shereen Punnassery | <img src="https://user-images.githubusercontent.com/38079632/229607779-bf5a7196-9785-40d5-894a-4d08a919756c.jpg" width="100" height="100"> | Team Member | shereen.punnassery@sjsu.edu
 Waqas Kureshy |  | Team Member | waqas.kureshy@sjsu.edu
